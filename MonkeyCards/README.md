@@ -1,77 +1,101 @@
-﻿🐒 MonkeyCards
-A clean, modular Blazor Web App built step‑by‑step with EF Core, SQLite, and Syncfusion CardView.
-This project is intentionally structured to be teachable, scaffolded, and enterprise‑ready, with each feature added in its own branch.
+﻿# 🐒 MonkeyCards — EF Core Setup (feature/efcore-setup)
 
-🚀 Project Overview
-MonkeyCards is a Blazor Web App that displays data using a modern, mobile‑friendly CardView UI.
-The app evolves through small, focused commits that demonstrate:
-- Clean architecture
-- EF Core data access
-- SQLite local database
-- Syncfusion CardView UI components
-- Modular services
-- Feature‑based branching
-- Curriculum‑ready documentation
-This repository is designed to be a teaching asset, showing how to build a real‑world Blazor application from the ground up.
+This branch establishes the full Entity Framework Core foundation for the MonkeyCards Blazor Web App.  
+It includes the DbContext, SQLite configuration, initial migration, and database creation.
 
-🧱 Tech Stack
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-|  |  | 
-🗂️ Repository Structure
-MonkeyCards/
-│   README.md
-│   .gitignore
-│   MonkeyCards.sln
-│
-└───MonkeyCards/
-    │   Program.cs
-    │   App.razor
-    │   MonkeyCards.csproj
-    │
-    ├───Pages/
-    ├───Components/
-    ├───Data/
-    ├───Services/
-    └───wwwroot/
-    This structure keeps the solution clean, predictable, and easy to teach.
+---
 
-    🌱 Branching Strategy
-Each feature is added in its own branch, keeping the history clean and modular.
- 🌱 Branching Strategy
-Each feature is added in its own branch, keeping the history clean and modular.
-|Branch  |  | Purpose
-| main |  | Clean Blazor template(Starting point)
-| feature/efcore-setup |  | Add EFCore + SQlite + DbContext.
-| feature/monkey-entity |  | Add Monkey model
-| feature/monkey-service |  | Add data service (CRUD)
-| feature/cardview-list |  |Add Syncfusion + CardView UI 
-| feature/crud-edit-delete |  |Add edit/delete flows 
-| feature/search-filter |  | Add search + filtering
-| feature/favorites |  | Add favorite toggle (⭐)
+## 🚀 Milestone Summary
+
+This milestone includes:
+
+- Added `AppDbContext` with `DbSet<Monkey>`
+- Configured EF Core with SQLite in `Program.cs`
+- Added connection string in `appsettings.json`
+- Created `InitialCreate` migration
+- Applied migration to generate `monkeys.db`
+- Verified Migrations folder and schema on GitHub
+
+This completes the backend foundation for CRUD operations.
+
+---
+
+## 🧱 Project Structure (after EF Core setup)
+MonkeyCards/ ├── Components/ ├── Data/ │    └── AppDbContext.cs ├── Migrations/ │    ├── 20260312174325_InitialCreate.cs │    ├── 20260312174325_InitialCreate.Designer.cs │    └── AppDbContextModelSnapshot.cs ├── Models/ │    └── Monkey.cs ├── Program.cs ├── appsettings.json └── MonkeyCards.csproj
+MonkeyCards/ ├── Components/ ├── Data/ │    └── AppDbContext.cs ├── Migrations/ │    ├── 20260312174325_InitialCreate.cs │    ├── 20260312174325_InitialCreate.Designer.cs │    └── AppDbContextModelSnapshot.cs ├── Models/ │    └── Monkey.cs ├── Program.cs ├── appsettings.json └── MonkeyCards.csproj
 
 
-This makes the repo ideal for tutorials, workshops, or curriculum slides.
+---
 
-🧩 Features (Planned & Implemented)
-- [ ] Blazor Web App template
-- [ ] EF Core + SQLite integration
-- [ ] Monkey model
-- [ ] MonkeyService (CRUD)
-- [ ] Syncfusion CardView list page
-- [ ] Edit/Delete actions
-- [ ] Search + filtering
-- [ ] Favorites system
+## 🗄️ EF Core Migration Commands
+
+### **Visual Studio (Package Manager Console)**
+
+| Scenario | Command | Example | Notes |
+|---------|---------|---------|-------|
+| Inside Visual Studio | `Add-Migration` | `Add-Migration InitialCreate` | Windows‑only, IDE‑integrated |
+| Apply migration | `Update-Database` | `Update-Database` | Creates/updates database |
+
+### **Terminal / CLI (cross‑platform)**
+
+| Scenario | Command | Example | Notes |
+|---------|---------|---------|-------|
+| Add migration | `dotnet ef migrations add` | `dotnet ef migrations add InitialCreate` | Works on Windows/macOS/Linux |
+| Apply migration | `dotnet ef database update` | `dotnet ef database update` | Required for automation/CI |
+
+**Rule of thumb:**  
+> Use **Add-Migration** inside Visual Studio.  
+> Use **dotnet ef** in any terminal.
+
+---
+
+## 🧪 How to Reproduce This Milestone
+
+### 1. Install EF Install Core tools (if needed)
+     dotnet tool install --global dotnet-ef
+
+     
+### 2. Add the migration
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+### 3. Apply the migration
 
 
+---
 
+## ⚠️ GOTCHAS & Lessons Learned
 
+### **1. Nested Solution/Project Folder Confusion**
+Visual Studio created:
 
+If you commit from the **outer** folder, Git will NOT include:
 
+- Migrations folder  
+- Models  
+- Data  
+- appsettings.json  
+- Program.cs  
 
+**Fix:**  
+Always commit from the folder that contains the `.csproj`.
 
+**Rule:**  
+> If you don’t see a `.csproj` in the folder, don’t commit from it.
+
+---
+
+### **2. Wrong Connection String Filename**
+
+---
+
+### **3. Running EF Commands in the Wrong Folder**
+If you see:No project was found here
+No project was found here
+
+You’re not in the folder with the `.csproj`.
+
+Run:dir *.csproj
+ t
 
 
