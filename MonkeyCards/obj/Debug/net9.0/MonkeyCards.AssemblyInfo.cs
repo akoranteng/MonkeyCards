@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MonkeyCards")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bedd566ce2cc873354447ac093915d5ad9780b73")]
 [assembly: System.Reflection.AssemblyProductAttribute("MonkeyCards")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MonkeyCards")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
